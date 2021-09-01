@@ -11,7 +11,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
-This is intended as a step-by-step guide for importing large Stata `.dta` files, converting into R friendly formats, and then saving out as `.fst` files to allow quick random access to the file (without having to load the whole file). It also covers importing these files and retrieving the lost variable labels.
+This is intended as a step-by-step guide for importing large Stata `.dta` files, converting into R friendly formats, and then saving out as either:
+
+1.  `.fst` files
+
+    1.  To allow quick random access to the file (without having to load the whole file).
+
+    2.  It also covers importing these files and retrieving the lost variable labels.
+
+2.  `.qs` files
+
+    1.  A much quicker version of `saveRDS`
+
+    2.  All attributes are preserved, but random access is not possible
 
 ```{r cars}
 library(haven)
