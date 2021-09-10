@@ -1,7 +1,7 @@
 ---
-title: "A guide to importing Stata .dta files into R"
+title: "An R User's guide to importing and exporting Stata .dta files"
 author: "Chris Penfold"
-date: "31 October 2018"
+date: '`r paste("First created on 31 October 2018. Updated on", Sys.Date())`'
 output: html_document
 ---
 
@@ -9,7 +9,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Overview
+
+I work in a Medical School in which almost everyone doing stats or quantitative analysis uses Stata. In recent years I have been favouring R for all my stats tasks (cleaning, analysis, reporting) and a growing unmber of my colleagues are using R for at least some of their work. 
+
+As R users we can use several packages to import native Stata data files (.dta files) into R. `haven` is arguably the most important of these and this is now included in RStudio by default. Development of its predecessor, `foreign`, has now stopped.
+
+Importing .dta files into R is obviously a crucial 1st step, but in order to work efficiently with the data in R further steps are needed. After we've imported our .dta files the choice of next steps depends on whether you will be exporting data again for analysis in Stata. The guide below assumes initially that you'll do all your data manipulation and analysis in R, with no export back to .dta. Later in this guide we've outlined how you can export R dataframes as .dta files. We also illustrate how some data manipulation tasks can affect the exported .dta files and we show how to tailor your import -> manipulation -> analysis workflow to best suit your needs.
+
+### Alternatives to `.Rdata` files for working with large and very large data files
 
 This is intended as a step-by-step guide for importing large Stata `.dta` files, converting into R friendly formats, and then saving out as either:
 
@@ -24,6 +32,9 @@ This is intended as a step-by-step guide for importing large Stata `.dta` files,
     1.  A much quicker version of `saveRDS`
 
     2.  All attributes are preserved, but random access is not possible
+    
+    
+
 
 ```{r cars}
 library(haven)
@@ -52,4 +63,4 @@ census_fst %>% filter(region==levels(region)[1]) %>% select(state:pop65p)
 census_fst %>% filter(region  %in% "NE") %>% select(state:pop65p)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
